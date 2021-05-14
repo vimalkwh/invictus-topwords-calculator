@@ -52,23 +52,6 @@ body {
   background-color: #f2f2f2;
   border-bottom: 1px solid lightgray;
 }
-.app__form > button {
-  padding: 10px;
-  margin-left: -1px;
-  border-right: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
-  border-top: 1px solid lightgray;
-  border-left: none;
-  background-color: lightgray;
-  cursor: pointer;
-  transition: all ease-in-out 200ms;
-  color: gray;
-  font-weight: 800;
-}
-.app__form > button:hover {
-  background-color: gray;
-  color: #f2f2f2;
-}
 
 .tabularContent__container {
   width: 300px;

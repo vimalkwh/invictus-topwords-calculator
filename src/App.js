@@ -1,3 +1,4 @@
+import { Button, FormControl, Input, InputLabel } from "@material-ui/core";
 import React, { useState } from "react";
 import "./App.css";
 import TabularContent from "./TabularContent";
@@ -17,7 +18,7 @@ function App() {
       .catch((err) => console.log(err));
 
     setDigit(input);
-    setInput(0);
+    setInput("");
   };
 
   return (
@@ -31,13 +32,23 @@ function App() {
         <p>words and their frequency calculator</p>
       </div>
       <form onSubmit={onsubmit} className="app__form">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          type="number"
-          placeholder="Enter number..."
-        />
-        <button type="submit">Submit</button>
+        <FormControl>
+          <InputLabel>Enter a number</InputLabel>
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            type="number"
+          />
+        </FormControl>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          disabled={!input}
+          className="formBtn"
+        >
+          Submit
+        </Button>
       </form>
 
       <TabularContent digit={digit} content={content} />

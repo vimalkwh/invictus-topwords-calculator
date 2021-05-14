@@ -1,8 +1,31 @@
 import React from "react";
-import TableRow from "./TableRow";
+import TabularRow from "./TabularRow";
 import "./App.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+
+const useStyles = makeStyles({
+  table: {
+    width: 500,
+    marginTop: 0,
+    marginRight: "auto",
+    marginBottom: 10,
+    marginLeft: "auto",
+  },
+  tableHead: {
+    fontWeight: 700,
+    backgroundColor: "#F2F2F2",
+  },
+});
 
 const TabularContent = ({ digit, content }) => {
+  const classes = useStyles();
   function calcWords(data) {
     function wordsObj(data) {
       if (data !== "") {
@@ -58,15 +81,20 @@ const TabularContent = ({ digit, content }) => {
   const topWords = topWordsFun(uniqueWords);
 
   return (
-    <div className="tabularContent__container">
-      <div className="tabularContent__headings">
-        <h3>Word</h3>
-        <h3>Frequency</h3>
-      </div>
+    <TableContainer className={classes.table} component={Paper}>
+      <Table size="small" aria-label="a dense table">
+        <TableHead className={classes.tableHead}>
+          <TableRow>
+            <TableCell>Word</TableCell>
+            <TableCell align="right">Frequency</TableCell>
+          </TableRow>
+        </TableHead>
+      </Table>
+
       {topWords.slice(0, digit).map((obj) => {
-        return <TableRow key={obj.id} word={obj.word} count={obj.count} />;
+        return <TabularRow key={obj.id} word={obj.word} count={obj.count} />;
       })}
-    </div>
+    </TableContainer>
   );
 };
 
