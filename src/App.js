@@ -3,6 +3,7 @@ import "./App.css";
 import TabularContent from "./TabularContent";
 
 function App() {
+  const [input, setInput] = useState();
   const [digit, setDigit] = useState();
   const [content, setContent] = useState("");
 
@@ -11,11 +12,12 @@ function App() {
     fetch("https://raw.githubusercontent.com/invictustech/test/main/README.md")
       .then((res) => res.text())
       .then((data) => {
-        setContent(data.substring(0, digit).toLowerCase());
+        setContent(data);
       })
       .catch((err) => console.log(err));
 
-    setDigit(0);
+    setDigit(input);
+    setInput(0);
   };
 
   return (
@@ -30,15 +32,15 @@ function App() {
       </div>
       <form onSubmit={onsubmit} className="app__form">
         <input
-          value={digit}
-          onChange={(e) => setDigit(e.target.value)}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           type="number"
           placeholder="Enter number..."
         />
         <button type="submit">Submit</button>
       </form>
 
-      <TabularContent content={content} />
+      <TabularContent digit={digit} content={content} />
     </div>
   );
 }

@@ -2,8 +2,8 @@ import React from "react";
 import TableRow from "./TableRow";
 import "./App.css";
 
-const TabularContent = ({ content }) => {
-  function topWords(data) {
+const TabularContent = ({ digit, content }) => {
+  function calcWords(data) {
     function wordsObj(data) {
       if (data !== "") {
         let temp = data;
@@ -42,7 +42,20 @@ const TabularContent = ({ content }) => {
     return wordsArr(words);
   }
 
-  const uniqueWords = topWords(content);
+  function topWordsFun(ar) {
+    for (var i = 1; i < ar.length; i++)
+      for (var j = 0; j < i; j++)
+        if (ar[i].count > ar[j].count) {
+          var x = ar[i];
+          ar[i] = ar[j];
+          ar[j] = x;
+        }
+
+    return ar;
+  }
+
+  const uniqueWords = calcWords(content);
+  const topWords = topWordsFun(uniqueWords);
 
   return (
     <div className="tabularContent__container">
@@ -50,7 +63,7 @@ const TabularContent = ({ content }) => {
         <h3>Word</h3>
         <h3>Frequency</h3>
       </div>
-      {uniqueWords.map((obj) => {
+      {topWords.slice(0, digit).map((obj) => {
         return <TableRow key={obj.id} word={obj.word} count={obj.count} />;
       })}
     </div>
