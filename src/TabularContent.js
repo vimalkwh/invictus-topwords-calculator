@@ -9,6 +9,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import FlipMove from "react-flip-move";
 
 const useStyles = makeStyles({
   table: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
   },
   tableHead: {
     fontWeight: 700,
-    backgroundColor: "#F2F2F2",
+    backgroundColor: "#e0e5ff",
   },
 });
 
@@ -90,10 +91,11 @@ const TabularContent = ({ digit, content }) => {
           </TableRow>
         </TableHead>
       </Table>
-
-      {topWords.slice(0, digit).map((obj) => {
-        return <TabularRow key={obj.id} word={obj.word} count={obj.count} />;
-      })}
+      <FlipMove>
+        {topWords.slice(0, digit).map((obj) => {
+          return <TabularRow key={obj.id} word={obj.word} count={obj.count} />;
+        })}
+      </FlipMove>
     </TableContainer>
   );
 };
