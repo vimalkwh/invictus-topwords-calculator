@@ -78,7 +78,7 @@ const TabularContent = ({ digit, content }) => {
     return ar;
   }
 
-  const uniqueWords = calcWords(content);
+  const uniqueWords = calcWords(content.toLowerCase());
   const topWords = topWordsFun(uniqueWords);
 
   return (
